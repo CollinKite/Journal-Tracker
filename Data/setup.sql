@@ -25,9 +25,9 @@ CREATE TABLE journal_entries (
 
 -- Sample users
 INSERT INTO users (email, password, name, profile_picture) VALUES
-('collin.kite@example.com', 'hashed_password1', 'Collin Kite', 'path/to/collin_picture.jpg'),
-('lisset.sadian@example.com', 'hashed_password2', 'Lisset Sadian', 'path/to/lisset_picture.jpg'),
-('connor.hoffman@example.com', 'hashed_password3', 'Connor Hoffman', 'path/to/connor_picture.jpg');
+('collin.kite@example.com', 'password', 'Collin Kite', 'path/to/collin_picture.jpg'),
+('lisset.sadian@example.com', 'password', 'Lisset Sadian', 'path/to/lisset_picture.jpg'),
+('connor.hoffman@example.com', 'password', 'Connor Hoffman', 'path/to/connor_picture.jpg');
 
 -- Sample journal entries
 INSERT INTO journal_entries (user_id, title, content) VALUES
