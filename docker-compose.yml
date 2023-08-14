@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  web:
+    build: ./Site
+    volumes:
+      - ./Site:/var/www/html
+    ports:
+      - "8080:80"
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: Your_password123
+      MYSQL_DATABASE: CSC270
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  db_init:
+    image: mysql:8.0
+    command:
+      - bash
+      - -c
+      - |
+        echo "Waiting for mysql service..."
+        while ! mysqladmin ping -hdb --silent; do
+          sleep 1
+        done
+        echo "Mysql service started."
+        mysql -h db -u root -pYour_password123 CSC270 < /docker-entrypoint-initdb.d/DBSetup.sql
+        echo "Database initialized."
+    volumes:
+      - ./Data:/docker-entrypoint-initdb.d
+    depends_on:
+      - db
+
+  
+
+volumes:
+  dbdata:
