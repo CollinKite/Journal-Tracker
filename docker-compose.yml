@@ -29,7 +29,7 @@ services:
           sleep 1
         done
         echo "Mysql service started."
-        mysql -h db -u root -pYour_password123 CSC270 < /docker-entrypoint-initdb.d/DBSetup.sql
+        mysql -h db -u root -pYour_password123 CSC270 < /docker-entrypoint-initdb.d/setup.sql
         echo "Database initialized."
     volumes:
       - ./Data:/docker-entrypoint-initdb.d
