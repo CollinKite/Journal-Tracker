@@ -1,7 +1,7 @@
 <Span>
-    <Span class="menu-button">Home</Span>
-    <Span class="menu-button">Create Journal</Span>
-    <Span class="menu-button">Search Journal</Span>
+    <Span class="menu-button"><a href="home.php">Home</a></Span>
+    <Span class="menu-button"><a href="search-journal.php">Find Journal</a></Span>
+    <Span class="menu-button"><a href="create-journal.php">Create Journal</a></Span>
     <div id="dropdownProfileContainer" class="dropdown-profile-container">
         <a href="profile.php">My Profile</a>
         <ul>
@@ -13,6 +13,16 @@
 </Span>
 
 <style>
+    a, a:visited, a:hover, a:active {
+    color: inherit;
+    text-decoration: none;
+    }
+
+    .menu-button {
+        display: inline-block;
+        padding: 10px;
+    }
+
     .dropdown-profile-container {
         position: relative;
         display: inline-block;
