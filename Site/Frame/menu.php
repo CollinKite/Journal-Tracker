@@ -1,6 +1,6 @@
 <Span>
     <Span class="menu-button"><a href="home.php">Home</a></Span>
-    <Span class="menu-button"><a href="search-journal.php">Find Journal</a></Span>
+    <Span class="menu-button"><a href="search-journal.php">Search Journal</a></Span>
     <Span class="menu-button"><a href="create-journal.php">Create Journal</a></Span>
     <div id="dropdownProfileContainer" class="dropdown-profile-container">
         <a href="profile.php">My Profile</a>
@@ -11,6 +11,7 @@
         </ul>
     </div>
 </Span>
+<br>
 
 <style>
     a, a:visited, a:hover, a:active {

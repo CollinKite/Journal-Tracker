@@ -1,5 +1,5 @@
 <?php 
-$page = "Create Journal";
+$page = "Edit Journal";
 include_once "Frame/header.php"; 
 ?>
 
