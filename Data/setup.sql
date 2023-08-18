@@ -7,8 +7,7 @@ CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    profile_picture VARCHAR(255) -- URL or file path
+    name VARCHAR(255) NOT NULL
 );
 
 -- Create journal_entries table
@@ -23,11 +22,11 @@ CREATE TABLE journal_entries (
 
 -- Insert sample data
 
--- Sample users
-INSERT INTO users (email, password, name, profile_picture) VALUES
-('collin.kite@example.com', 'password', 'Collin Kite', 'path/to/collin_picture.jpg'),
-('lisset.sadian@example.com', 'password', 'Lisset Sadian', 'path/to/lisset_picture.jpg'),
-('connor.hoffman@example.com', 'password', 'Connor Hoffman', 'path/to/connor_picture.jpg');
+-- Sample usersa
+INSERT INTO users (email, password, name) VALUES
+('collin.kite@example.com', 'password', 'Collin Kite'),
+('lisset.sadian@example.com', 'password', 'Lisset Sadian'),
+('connor.hoffman@example.com', 'password', 'Connor Hoffman');
 
 -- Sample journal entries
 INSERT INTO journal_entries (user_id, title, content) VALUES

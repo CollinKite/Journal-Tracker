@@ -7,7 +7,7 @@
         <ul>
             <li><a href="account.php">Account</a></li>
             <li><a href="settings.php">Settings</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li><a href="/Fetch/logout.php">Logout</a></li>
         </ul>
     </div>
 </Span>
