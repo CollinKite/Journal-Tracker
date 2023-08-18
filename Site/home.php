@@ -65,13 +65,16 @@ include_once "Frame/header.php";
         titleElement.innerHTML = data[i].title;
         li.appendChild(titleElement);
 
+        var spaceElement = document.createTextNode(' ');
+        li.appendChild(spaceElement);
+
          //p tag content 
 
          var contentElement = document.createElement('span');
         contentElement.innerHTML = data[i].content;
         li.appendChild(contentElement); 
 
-        
+
         // Create the "Edit" button
         var editButton = document.createElement('button');
         editButton.innerHTML = "Edit";
