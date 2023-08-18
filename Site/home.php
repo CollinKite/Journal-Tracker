@@ -58,10 +58,22 @@ include_once "Frame/header.php";
         var spaceElement = document.createTextNode(' ');
         li.appendChild(spaceElement);
 
+       
+
         // Display the journal title
         var titleElement = document.createElement('span');
         titleElement.innerHTML = data[i].title;
         li.appendChild(titleElement);
+
+        var spaceElement = document.createTextNode(' ');
+        li.appendChild(spaceElement);
+
+         //p tag content 
+
+         var contentElement = document.createElement('span');
+        contentElement.innerHTML = data[i].content;
+        li.appendChild(contentElement); 
+
 
         // Create the "Edit" button
         var editButton = document.createElement('button');
