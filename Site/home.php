@@ -29,7 +29,9 @@ include_once "Frame/header.php";
                 const data = await response.json();
 
                 data.sort((a, b) => (a.date < b.date) ? 1 : -1);
-                console.log("Data Recieved" + data);
+                console.log("Data Recieved");
+                //console log json must be stringified
+                console.log(JSON.stringify(data));
                 populateJournals(data);
 
             } catch (error) {
@@ -39,39 +41,48 @@ include_once "Frame/header.php";
         }
 
         function populateJournals(data) {
-            //display all journal entries save the id in value of the buttons , there will be button for delete , and edit
-            //each entry should have two buttons delete and edit
-            var journalEntriesList = document.getElementById('journal-entries-list');
-            var journalEntries = document.getElementById('journal-entries');
-            var ul = document.createElement('ul');
-            journalEntriesList.appendChild(ul);
-            for (var i = 0; i < data.length; i++) {
-                var li = document.createElement('li');
-                var a = document.createElement('a');
-                a.href = "journal-entry.php?entryId=" + data[i].id;
-                a.innerHTML = data[i].title;
-                li.appendChild(a);
-                ul.appendChild(li);
-                var deleteButton = document.createElement('button');
-                deleteButton.innerHTML = "Delete";
-                deleteButton.value = data[i].id;
-                deleteButton.onclick = function() {
-                    deleteJournal(this.value);
-                };
-                li.appendChild(deleteButton);
-                var editButton = document.createElement('button');
-                editButton.innerHTML = "Edit";
-                editButton.value = data[i].id;
-                editButton.onclick = function() {
-                    editJournal(this.value);
-                };
-                li.appendChild(editButton);
-            }
-            journalEntries.appendChild(journalEntriesList);
+    var journalEntriesList = document.getElementById('journal-entries-list');
+    var journalEntries = document.getElementById('journal-entries');
+    var ul = document.createElement('ul');
+    journalEntriesList.appendChild(ul);
 
-            
+    for (var i = 0; i < data.length; i++) {
+        var li = document.createElement('li');
 
-        }
+        // Display the journal date
+        var dateElement = document.createElement('span');
+        dateElement.innerHTML = data[i].date_created;
+        li.appendChild(dateElement);
+
+        // Add a space between date and title
+        var spaceElement = document.createTextNode(' ');
+        li.appendChild(spaceElement);
+
+        // Display the journal title
+        var titleElement = document.createElement('span');
+        titleElement.innerHTML = data[i].title;
+        li.appendChild(titleElement);
+
+        // Create the "Edit" button
+        var editButton = document.createElement('button');
+        editButton.innerHTML = "Edit";
+        editButton.value = data[i].entry_id;
+
+        // Attach click event to the "Edit" button
+        editButton.onclick = function() {
+            // Redirect to edit-journal.php with the entryId as a query parameter
+            window.location.href = "edit-journal.php?entryId=" + this.value;
+        };
+
+        li.appendChild(editButton);
+        ul.appendChild(li);
+    }
+
+    journalEntries.appendChild(journalEntriesList);
+}
+
+
+
         
 
         </script>
