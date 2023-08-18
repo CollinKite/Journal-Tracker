@@ -2,20 +2,20 @@
 $page = "Homepage";
 include_once "Frame/header.php"; 
 ?>
- <!--All journals by date-->
+<!--All journals by date-->
 
- <div>
-     <h2>All Journals</h2>
-     <div id="journal-entries">
-         <div id="journal-entries-list">
-             <ul>
-                 <!-- <li><a href="journal-entry.php?entryId=1">Journal Entry 1</a></li> -->
-             </ul>
-         </div>
-     </div>
+<div>
+    <h2>All Journals</h2>
+    <div id="journal-entries">
+        <div id="journal-entries-list">
+            <ul>
+                <!-- <li><a href="journal-entry.php?entryId=1">Journal Entry 1</a></li> -->
+            </ul>
+        </div>
+    </div>
 
 
-     <script>
+    <script>
         //javascript request to get all journals from endpoint 
         window.onload = async function() {
             await fetchJournals(1);
@@ -24,8 +24,10 @@ include_once "Frame/header.php";
 
         async function fetchJournals(userId) {
             try {
-                const response = await fetch('Fetch/get-journal-entries-by-userid.php?userId=' + userId);
+                const response = await fetch('Fetch/get-journal-entries-by-userid.php?userId=' + userId);  
+
                 const data = await response.json();
+
                 data.sort((a, b) => (a.date < b.date) ? 1 : -1);
                 console.log("Data Recieved" + data);
                 populateJournals(data);
@@ -36,7 +38,7 @@ include_once "Frame/header.php";
             }
         }
 
-         function populateJournals(data) {
+        function populateJournals(data) {
             //display all journal entries save the id in value of the buttons , there will be button for delete , and edit
             //each entry should have two buttons delete and edit
             var journalEntriesList = document.getElementById('journal-entries-list');
