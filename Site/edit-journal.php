@@ -16,10 +16,13 @@ include_once "Frame/header.php";
             <label for="content">Content</label>
             <textarea id="content" name="content" placeholder="Write your journal entry here..." style="height:200px" required></textarea>
             <input type="submit" value="Submit">
+            <!-- button for delete -->
+        <button id="delete-button" onclick="deleteJournal()">Delete Entry</button>
         </form>
 
-        <!-- button for delete -->
-        <button id="delete-button" onclick="deleteJournal()">Delete</button>
+        <p id="output"></p>
+
+        
     </div>
 
    
@@ -27,10 +30,12 @@ include_once "Frame/header.php";
 
 
 <script>
+ var entryId;
 window.onload = async function() {
     //get the entry id from the url
     var urlParams = new URLSearchParams(window.location.search);
-    var entryId = urlParams.get('entryId');
+     entryId = urlParams.get('entryId');
+    console.log("entry id " + entryId);
     var journalEntryData;
     await fetchJournal(entryId);
 }
@@ -51,6 +56,25 @@ async function fetchJournal(entryId) {
     }
 }
 
+async function deleteJournal() {
+    try {
+        const response = await fetch('Fetch/delete-journal-entry.php?entryId=' + entryId);
+        console.log(entryId);
+        
+        //redirect the user to the home page
+        //alert the user that the journal entry was deleted
+        alert('Journal entry deleted successfully');
+        window.location.href = '/home.php';
+
+    } catch (error) {
+
+        alert('Something went wrong with the delete. Please try again later.');
+        console.error('Error fetching data:', error);
+
+    }
+}
+
+
 function populateJournal(data) {
 //just display single journal entry in the journal-entry div 
  // Get references to the form input fields
@@ -65,22 +89,71 @@ var journalEntry = document.getElementById('journal-entry');
 
 //display the date title and content
 var dateElement = document.createElement('span');
+dateElement.className = 'entry-date'; // Assign the class here
 dateElement.innerHTML = data.date_created;
 journalEntry.appendChild(dateElement);
 
-// Add a space between date and title
+// add whole line inbetween date and title
+var linebreak = document.createElement('br');
+journalEntry.appendChild(linebreak);
 
-var spaceElement = document.createTextNode(' ');
-journalEntry.appendChild(spaceElement);
+
 
 // Display the journal title
 
 var titleElement = document.createElement('span');
+titleElement.className = 'entry-title'; // Assign the class here
 titleElement.innerHTML = data.title;
 journalEntry.appendChild(titleElement);
 
 
 }
+
+
+//handle form submission
+document.querySelector('form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    console.log('form submitted');
+
+    //get the values from the form
+    var title = document.getElementById('title').value;
+    var content = document.getElementById('content').value;
+
+    //create the url to send the request to
+
+    var url = 'Fetch/edit-journal-entry.php';
+
+    var data = {
+        title: title,
+        content: content,
+        entryId: entryId
+    }
+
+    console.log (JSON.stringify(data));
+
+    var request = new XMLHttpRequest();
+    request.open('POST', url);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.onload = function() {
+        if (request.status == 200) {
+            // If the request was successful, display a success message
+           //use an alert
+              alert('Journal entry updated successfully');
+              //redirect the user to the home page
+             window.location.href = '/home.php';
+        } else {
+            // Otherwise, display an error message
+           alert('Something went wrong with the update. Please try again later.');
+
+        }
+    };
+
+    // Send the request with the JSON data
+    request.send(JSON.stringify(data)); 
+
+    //console log the response
+    console.log(request.responseText);
+    });
     </script>
 
 

@@ -5,7 +5,7 @@ include_once "Frame/header.php";
 <!--All journals by date-->
 
 <div>
-    <h2>All Journals</h2>
+    <h3>Your Journal Entries</h3>
     <div id="journal-entries">
         <div id="journal-entries-list">
             <ul>
@@ -18,8 +18,18 @@ include_once "Frame/header.php";
     <script>
         //javascript request to get all journals from endpoint 
         window.onload = async function() {
-            await fetchJournals(1);
+            //grab cookie user_id
+            var userId = getCookie('user_id');
+            console.log("cookie " + userId);
+            await fetchJournals(userId);
         }
+
+        function getCookie(name) {
+     const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+         if (parts.length === 2) return parts.pop().split(';').shift();
+     
+}
 
 
         async function fetchJournals(userId) {
@@ -51,41 +61,33 @@ include_once "Frame/header.php";
 
         // Display the journal date
         var dateElement = document.createElement('span');
+        dateElement.className = 'entry-date'; // Assign the class here
         dateElement.innerHTML = data[i].date_created;
         li.appendChild(dateElement);
 
-        // Add a space between date and title
-        var spaceElement = document.createTextNode(' ');
-        li.appendChild(spaceElement);
-
-       
-
         // Display the journal title
-        var titleElement = document.createElement('span');
+        var titleElement = document.createElement('h4');
+        titleElement.className = 'entry-title'; // Assign the class here
         titleElement.innerHTML = data[i].title;
         li.appendChild(titleElement);
 
-        var spaceElement = document.createTextNode(' ');
-        li.appendChild(spaceElement);
-
-         //p tag content 
-
-         var contentElement = document.createElement('span');
+        // Display the journal content
+        var contentElement = document.createElement('p');
+        contentElement.className = 'entry-content'; // Assign the class here
         contentElement.innerHTML = data[i].content;
-        li.appendChild(contentElement); 
-
+        li.appendChild(contentElement);
 
         // Create the "Edit" button
         var editButton = document.createElement('button');
-        editButton.innerHTML = "Edit";
+        editButton.className = 'edit-button'; // Assign the class here
+        editButton.innerHTML = 'Edit';
         editButton.value = data[i].entry_id;
 
         // Attach click event to the "Edit" button
         editButton.onclick = function() {
             // Redirect to edit-journal.php with the entryId as a query parameter
-            window.location.href = "edit-journal.php?entryId=" + this.value;
+            window.location.href = 'edit-journal.php?entryId=' + this.value;
         };
-
         li.appendChild(editButton);
         ul.appendChild(li);
     }

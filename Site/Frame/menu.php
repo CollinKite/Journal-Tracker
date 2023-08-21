@@ -23,6 +23,13 @@ else: ?>
 </Span>
 <?php endif; ?>
 <style>
+    html{
+        background-image: url('https://cdn.discordapp.com/attachments/1026894534279430206/1143050145622139001/seamless-notebook-paper-texture-free-thumb36.png');
+    background-repeat: repeat; /* This will make the image repeat both horizontally and vertically */
+   
+    }
+
+    
     a, a:visited, a:hover, a:active {
     color: inherit;
     text-decoration: none;
@@ -169,5 +176,120 @@ else: ?>
             border: 1px solid #ccc;
             border-radius: 3px;
             resize: vertical; /* Allow vertical resizing of the textarea */
+    }
+
+    #journal-entries {
+        margin: 20px auto;
+        max-width: 800px;
+    }
+
+
+    #journal-entry{
+        display: inline-flex;
+    padding: 20px;
+    height: 20px;
+    justify-content: space-evenly;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+    .edit-button {
+        background-color: white;
+        color: #007bff;
+        border: 1px solid #007bff;
+        float: right;
+
+    }
+
+    .edit-button:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    /* Style for the submit button */
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .entry-content {
+        margin-top: 10px;
+        word-wrap: break-word;
+        color: #555;
+    }
+
+    .entry-date {
+      
+        padding: 5px 10px;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 5px;
+    }
+
+    .entry-title {
+        position: absolute;
+    margin-top: 30px;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    }
+
+    #delete-button {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 5px;
+        cursor: pointer;
+        float: right;
+    
+    
+    }
+
+    #delete-button:hover {
+        background-color: #c82333;
+    }
+
+    h3 {
+
+    font-size: 35px;
+    border-radius: 5px;
+    margin:auto;
+    padding: 20px;
+    width: fit-content;
     }
 </style>
