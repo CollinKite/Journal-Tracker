@@ -1,6 +1,10 @@
 <?php
-$page = "Admin Login";
+$page = "Login";
 include_once "Frame/header.php";
+//if token is set printn it out
+if(isset($_SESSION['token'])){
+    echo $_SESSION['token'];
+}
 ?>
 <form id="loginForm">
     <label for="username">Username:</label>
@@ -31,7 +35,7 @@ include_once "Frame/header.php";
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                username: username,
+                email: username,
                 password: password
             }),
         })
@@ -39,7 +43,7 @@ include_once "Frame/header.php";
         .then(data => {
             // If the login was successful, redirect to the panel
             if (data == "success") {
-                window.location.href = '/journal.php'; // needs params here to redirect to the correct users journal?
+                window.location.href = '/search-journal.php'; // needs params here to redirect to the correct users journal?
             }
             // Otherwise, display the error message
             else {

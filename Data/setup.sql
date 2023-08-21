@@ -7,6 +7,7 @@ CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    `token` VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL
 );
 
@@ -23,10 +24,10 @@ CREATE TABLE journal_entries (
 -- Insert sample data
 
 -- Sample usersa
-INSERT INTO users (email, password, name) VALUES
-('collin.kite@example.com', 'password', 'Collin Kite'),
-('lisset.sadian@example.com', 'password', 'Lisset Sadian'),
-('connor.hoffman@example.com', 'password', 'Connor Hoffman');
+INSERT INTO users (email, password, name, `token`) VALUES
+('collin.kite@example.com', 'password', 'Collin Kite', 'insecuretoken'),
+('lisset.sadian@example.com', 'password', 'Lisset Sadian', 'insecuretoken'),
+('connor.hoffman@example.com', 'password', 'Connor Hoffman', 'insecuretoken');
 
 -- Sample journal entries
 INSERT INTO journal_entries (user_id, title, content) VALUES
