@@ -25,10 +25,9 @@ include_once "Frame/header.php";
         }
 
         function getCookie(name) {
-     const value = `; ${document.cookie}`;
+        const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
-         if (parts.length === 2) return parts.pop().split(';').shift();
-     
+        if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
 
@@ -50,7 +49,7 @@ include_once "Frame/header.php";
             }
         }
 
-        function populateJournals(data) {
+    function populateJournals(data) {
     var journalEntriesList = document.getElementById('journal-entries-list');
     var journalEntries = document.getElementById('journal-entries');
     var ul = document.createElement('ul');
@@ -99,6 +98,6 @@ include_once "Frame/header.php";
 
         
 
-        </script>
+    </script>
 
 <?php include_once "Frame/footer.php"; ?>

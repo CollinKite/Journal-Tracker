@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
 
         // Get the results
-        $results = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result();
+        $results = $result->fetch_all(MYSQLI_ASSOC);
 
         // Close the statement and connection
         $stmt->close();
@@ -40,8 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button type="submit">Search</button>
 </form>
 
-<div id="searchResults">
-    <!-- Display search results here using JavaScript -->
+<div id="journal-entries">
+    <div id="journal-entries-list">
+        <ul id="searchResults"> <!-- Added ID to the ul element -->
+            <!-- Results will be added dynamically here -->
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -59,19 +64,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (data.length === 0) {
                     searchResults.innerHTML = "<p>No matching journals found.</p>";
                 } else {
-                    data.forEach(result => {
-                        // Display journal entry details
-                        const entryDiv = document.createElement("div");
-                        entryDiv.innerHTML = `
-                            <h4>${result.title}</h4>
-                            <p>${result.content}</p>
-                            <p>Date Created: ${result.date_created}</p>
-                        `;
-                        searchResults.appendChild(entryDiv);
+                    data.forEach(entry => {
+                        var li = document.createElement('li');
+
+                        // Display the journal date
+                        var dateElement = document.createElement('span');
+                        dateElement.className = 'entry-date'; // Assign the class here
+                        dateElement.innerHTML = entry.date_created;
+                        li.appendChild(dateElement);
+
+                        // Display the journal title
+                        var titleElement = document.createElement('h4');
+                        titleElement.className = 'entry-title'; // Assign the class here
+                        titleElement.innerHTML = entry.title;
+                        li.appendChild(titleElement);
+
+                        // Display the journal content
+                        var contentElement = document.createElement('p');
+                        contentElement.className = 'entry-content'; // Assign the class here
+                        contentElement.innerHTML = entry.content;
+                        li.appendChild(contentElement);
+
+                        // Create the "Edit" button
+                        var editButton = document.createElement('button');
+                        editButton.className = 'edit-button'; // Assign the class here
+                        editButton.innerHTML = 'Edit';
+                        editButton.value = entry.entry_id;
+
+                        // Attach click event to the "Edit" button
+                        editButton.onclick = function () {
+                            // Redirect to edit-journal.php with the entryId as a query parameter
+                            window.location.href = 'edit-journal.php?entryId=' + this.value;
+                        };
+                        li.appendChild(editButton);
+                        searchResults.appendChild(li); // Append the li to searchResults
                     });
                 }
-            })
-            .catch(error => console.error(error));
+            });
     });
 </script>
 
