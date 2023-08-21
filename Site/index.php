@@ -43,7 +43,7 @@ if(isset($_SESSION['token'])){
         .then(data => {
             // If the login was successful, redirect to the panel
             if (data == "success") {
-                window.location.href = '/search-journal.php'; // needs params here to redirect to the correct users journal?
+                window.location.href = '/home.php'; // needs params here to redirect to the correct users journal?
             }
             // Otherwise, display the error message
             else {
