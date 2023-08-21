@@ -7,6 +7,7 @@ if(!isset($_SESSION)){
 
 <head>
     <!-- <link rel="stylesheet" href="style.css"> -->
+    
 <?php
     $websiteName = "PHP Sucks Journal";
     echo "<title>" . $websiteName . " - " . $page . "</title>";

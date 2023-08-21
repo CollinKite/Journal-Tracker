@@ -26,7 +26,7 @@ else: ?>
     html{
         background-image: url('https://cdn.discordapp.com/attachments/1026894534279430206/1143050145622139001/seamless-notebook-paper-texture-free-thumb36.png');
     background-repeat: repeat; /* This will make the image repeat both horizontally and vertically */
-   
+ 
     }
 
     

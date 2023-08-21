@@ -5,7 +5,7 @@ include_once "Frame/header.php";
 
 <div>
     <div id="journal-entry">
-       
+       <h2>Create A New Journal Entry</h3>
         </div>
         <div id ="edit-journal">
         <form action="Fetch/create-journal-entry.php" method="post">
