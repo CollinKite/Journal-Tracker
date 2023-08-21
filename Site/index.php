@@ -7,7 +7,7 @@ if(isset($_SESSION['token'])){
 }
 ?>
 <form id="loginForm">
-    <label for="username">Username:</label>
+    <label for="username">Email:</label>
     <input type="text" id="username" name="username" required>
     <br>
     <label for="password">Password:</label>

@@ -7,7 +7,11 @@ include_once "Database/dbconnect.php";
 
 $db = Connect();
 
-$_SESSION["user_id"] = 1;
+if (isset($_COOKIE["user_id"])) {
+    $_SESSION["user_id"] = $_COOKIE["user_id"];
+} else {
+    echo "Error: User ID not set.";
+}
 
 $user_id = $_SESSION["user_id"];
 $select_query = "SELECT email, name FROM users WHERE user_id = $user_id";
@@ -31,14 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $statement = $db->prepare($update_query);
         $statement->bind_param("si", $new_email, $user_id);
         $statement->execute();
-    } elseif (isset($_POST["update_password"])) {
-        $new_password = $_POST["new_password"];
-        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-        // Use a prepared statement for updating password
-        $update_query = "UPDATE users SET password = ? WHERE user_id = ?";
-        $statement = $db->prepare($update_query);
-        $statement->bind_param("si", $hashed_password, $user_id);
-        $statement->execute();
     } elseif (isset($_POST["update_name"])) {
         $new_name = $_POST["new_name"];
         // Use a prepared statement for updating name
@@ -46,6 +42,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $statement = $db->prepare($update_query);
         $statement->bind_param("si", $new_name, $user_id);
         $statement->execute();
+    }
+
+    elseif (isset($_POST["update_password"])) {
+        $new_password = $_POST["new_password"];
+        $confirm_password = $_POST["confirm_password"];
+
+        if ($new_password === $confirm_password) {
+            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+            // Use a prepared statement for updating password
+            $update_query = "UPDATE users SET password = ? WHERE user_id = ?";
+            $statement = $db->prepare($update_query);
+            $statement->bind_param("si", $hashed_password, $user_id);
+            $statement->execute();
+        } else {
+            echo "Passwords do not match.";
+        }
     }
 }
 
