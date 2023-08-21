@@ -171,6 +171,8 @@ function checkLogin($conn){
         $row = mysqli_fetch_assoc($result);
         $token = $row['token'];
         $_SESSION['token'] = $token;
+        //set cookie of user_id
+        setcookie("user_id", $row['user_id'], time() + (86400 * 30), "/");
         echo "success";
     } else {
         echo "Email or password is incorrect";
