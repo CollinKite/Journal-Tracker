@@ -4,7 +4,7 @@ if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
 
-function verifyAdminToken($conn){
+function verifyToken($conn){
     if(isset($_SESSION['token'])){
         $token = $_SESSION['token'];
     }
@@ -21,13 +21,8 @@ function verifyAdminToken($conn){
     return mysqli_num_rows($result) == 1;
 }
 
-function createUser($conn){
+function createUser($conn) {
     $data = json_decode(file_get_contents("php://input"), true);
-    if(!verifyAdminToken($conn)){
-        echo "Invalid token";
-        die();
-    }
-
     $email = $data['email'];
     $password = $data['password'];
     $name = $data['name'];
@@ -49,6 +44,9 @@ function createUser($conn){
     }
 
     $token = bin2hex(random_bytes(16));
+
+    // IMPORTANT: Hash the password before storing it in the database
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     $query = "INSERT INTO users (email, password, token, name) VALUES ('$email', '$password', '$token', '$name')";
     $result = mysqli_query($conn, $query);
@@ -85,7 +83,7 @@ function retriveAdmin($conn){
 
 function updateAdmin($conn){
     $data = json_decode(file_get_contents("php://input"), true);
-    if(!verifyAdminToken($conn)){
+    if(!verifyToken($conn)){
         echo "Invalid token";
         die();
     }
@@ -123,7 +121,7 @@ function updateAdmin($conn){
 
 function deleteAdmin($conn){
     $data = json_decode(file_get_contents("php://input"), true);
-    if(!verifyAdminToken($conn)){
+    if(!verifyToken($conn)){
         echo "Invalid token";
         die();
     }

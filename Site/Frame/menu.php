@@ -1,3 +1,5 @@
+<?php
+if(isset($_SESSION['token'])): ?>
 <Span>
     <Span class="menu-button"><a href="home.php">Home</a></Span>
     <Span class="menu-button"><a href="search-journal.php">Search Journal</a></Span>
@@ -12,7 +14,14 @@
     </div>
 </Span>
 <br>
-
+<?php
+else: ?>
+<!-- Login and signup -->
+<Span>
+    <Span class="menu-button"><a href="index.php">Login</a></Span>
+    <Span class="menu-button"><a href="signup.php">Signup</a></Span>
+</Span>
+<?php endif; ?>
 <style>
     a, a:visited, a:hover, a:active {
     color: inherit;
