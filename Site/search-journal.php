@@ -4,7 +4,7 @@ $page = "Search for a Journal";
 include_once "Frame/header.php";
 
 // Include any necessary files or define your database connection here
-include_once "Database/dbconnect.php"; // Replace with the path to your db_connect.php file
+// include_once "Database/dbconnect.php"; // Replace with the path to your db_connect.php file
 
 // Initialize an empty array for results
 $results = [];
