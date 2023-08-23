@@ -21,6 +21,34 @@ function verifyToken($conn){
     return mysqli_num_rows($result) == 1;
 }
 
+function updateUserStyle($conn)
+{
+    $data = json_decode(file_get_contents("php://input"), true);
+    $style = $data['style'];
+    if(empty($style)){
+        echo "No style passed";
+        die();
+    }
+    
+    $style = mysqli_real_escape_string($conn, $style);
+
+    $query = "SELECT * FROM users WHERE style = '$style'";
+    $result = mysqli_query($conn, $query);
+    if(mysqli_num_rows($result) > 0){
+        echo "Style doesn't exist";
+        die();
+    }
+    
+    //the style exists so update the user's style
+    $query = "UPDATE users SET style = '$style' WHERE user_id = " . $_COOKIE['user_id'];
+    $result = mysqli_query($conn, $query);
+    if($result){
+        echo "Style updated successfully";
+    } else {
+        echo "Error updating style: " . mysqli_error($conn);
+    }
+}
+
 function createUser($conn) {
     $data = json_decode(file_get_contents("php://input"), true);
     $email = $data['email'];
@@ -48,7 +76,7 @@ function createUser($conn) {
     // IMPORTANT: Hash the password before storing it in the database
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO users (email, password, token, name) VALUES ('$email', '$password', '$token', '$name')";
+    $query = "INSERT INTO users (email, password, token, name, style) VALUES ('$email', '$password', '$token', '$name', 'lightmode.css')";
     $result = mysqli_query($conn, $query);
     if($result){
         echo "User created successfully";

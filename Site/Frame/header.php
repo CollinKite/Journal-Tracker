@@ -12,25 +12,27 @@ if(!isset($_SESSION)){
     $websiteName = "PHP Sucks Journal";
     echo "<title>" . $websiteName . " - " . $page . "</title>";
     $style = "";
-    //check if dbconnect.php is included
-    // if(!function_exists('Connect')){
-    //     require_once "dbconnect.php";
-    // }
-    //this is a big no no, but couldn't get it to work else wise.
-    // $conn = Connect();
-    // $query = "SELECT styles.filename 
-    //         FROM Selected_Style 
-    //         INNER JOIN styles ON Selected_Style.style_id = styles.id";
+    if(isset($_COOKIE['user_id'])){
+         //check if dbconnect.php is included
+        if(!function_exists('Connect')){
+            require_once "dbconnect.php";
+        }
+        //this is a big no no, but couldn't get it to work else wise.
+        $conn = Connect();
+        $query = "SELECT style FROM users WHERE user_id = ".$_COOKIE['user_id'];
+        $result = mysqli_query($conn, $query);
+        if($row = mysqli_fetch_assoc($result)){
+            $style = $row['style'];
+        }
+    }
+    else{
+        $style = "lightmode.css";
+    }
+   
 
-    // $result = mysqli_query($conn, $query);
-
-    // if($row = mysqli_fetch_assoc($result)){
-    //     $style = $row['filename'];
-    // }
 ?>
 <!-- style -->
-<!-- <link rel="stylesheet" href="../css/<?php echo $style; ?>"> -->
-<!-- <link rel="stylesheet" href="../css/darkmode.css"> -->
+<link rel="stylesheet" href="../css/<?php echo $style; ?>">
 </head>
 <body>
 <header>

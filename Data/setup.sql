@@ -8,7 +8,8 @@ CREATE TABLE users (
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     `token` VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    `style` VARCHAR(255) NOT NULL
 );
 
 -- Create journal_entries table
@@ -24,10 +25,10 @@ CREATE TABLE journal_entries (
 -- Insert sample data
 
 -- Sample usersa
-INSERT INTO users (email, password, name, `token`) VALUES
-('collin.kite@example.com', 'password', 'Collin Kite', 'insecuretoken'),
-('lisset.sadian@example.com', 'password', 'Lisset Sadian', 'insecuretoken'),
-('connor.hoffman@example.com', 'password', 'Connor Hoffman', 'insecuretoken');
+INSERT INTO users (email, password, name, `token`, `style`) VALUES
+('collin.kite@example.com', 'password', 'Collin Kite', 'insecuretoken', `darkmode.css`),
+('lisset.sadian@example.com', 'password', 'Lisset Sadian', 'insecuretoken', `pink.css`),
+('connor.hoffman@example.com', 'password', 'Connor Hoffman', 'insecuretoken', `lightmode.css`);
 
 -- Sample journal entries
 INSERT INTO journal_entries (user_id, title, content) VALUES
