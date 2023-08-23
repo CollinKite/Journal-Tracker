@@ -3,8 +3,6 @@ session_start();
 $page = "Account Settings";
 include_once "Frame/header.php"; 
 
-include_once "Database/dbconnect.php";
-
 $db = Connect();
 
 if (isset($_COOKIE["user_id"])) {
