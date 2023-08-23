@@ -9,7 +9,7 @@ body {
 
 header {
     background-color: #1f1f1f;
-    color: #ccc;
+    color: #7b7a7a;
     text-align: center;
     padding: 10px 0;
     border-bottom: 1px solid #333;
@@ -107,22 +107,6 @@ header {
     background-color: #0056b3;
 }
 
-#Admins, #Catagories, #subCatagories, #Customers {
-    margin-top: 20px;
-}
-
-#Admins div, #Catagories div, #subCatagories div, #Customers div {
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-#Admins div button, #Catagories div button, #subCatagories div button, #Customers div button {
-    margin-top: 10px;
-}
-
 form {
     max-width: 400px;
     margin: 0 auto;
@@ -164,63 +148,49 @@ input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-#consultationFormContainer{
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    background-color: #1a1a1a;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-    margin-top: 30px;
-  }
-  #basePageInfo{
-    max-width: 50%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    background-color: #1a1a1a;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-    margin-top: 30px;
-  }
-  .consultation-form label,
-  .consultation-form input,
-  .consultation-form select,
-  .consultation-form button {
-    margin-bottom: 15px;
-  }
-
-  .consultation-form label {
-    font-weight: bold;
-    color: #ccc;
-  }
-
-  .consultation-form input,
-  .consultation-form select {
-    width: 100%;
-    max-width: 300px;
-    padding: 8px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    font-size: 14px;
+.dropdown-profile-container ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
     background-color: #2b2b2b;
-    color: #ccc;
-  }
+    border: 1px solid #000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-  .consultation-form button {
-    display: block;
-    margin: 0 auto; /* Center the button */
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
+form {
+    margin: 20px auto;
+    width: 70%;
+    padding: 20px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-  }
+    background-color: #000;
+}
 
-  .consultation-form button:hover {
-    background-color: #0056b3;
-  }
+.dropdown-profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-profile-container > a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #FFF;
+}
+
+
+
+.dropdown-profile-container:hover ul {
+    display: block;
+}
+
+.dropdown-profile-container li {
+    padding: 8px 15px;
+}
+
+.dropdown-profile-container li:hover {
+    background-color: #000;
+}

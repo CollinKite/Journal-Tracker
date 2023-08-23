@@ -9,7 +9,7 @@ body {
 
 header {
     background-color: #800080;
-    color: #fff;
+    color: #e738af;
     text-align: center;
     padding: 10px 0;
     border-bottom: 1px solid #ff00ff;
@@ -92,36 +92,6 @@ header {
     margin-bottom: 10px;
 }
 
-#section button {
-    background: linear-gradient(to right, #ff00ff, #800080);
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#section button:hover {
-    background: linear-gradient(to right, #800080, #ff00ff);
-}
-
-#Admins, #Catagories, #subCatagories, #Customers {
-    margin-top: 20px;
-}
-
-#Admins div, #Catagories div, #subCatagories div, #Customers div {
-    background-color: #800080;
-    border: 1px solid #ff00ff;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-#Admins div button, #Catagories div button, #subCatagories div button, #Customers div button {
-    margin-top: 10px;
-}
-
 form {
     max-width: 400px;
     margin: 0 auto;
@@ -163,63 +133,25 @@ input[type="submit"]:hover {
     background: linear-gradient(to right, #800080, #ff00ff);
 }
 
-#consultationFormContainer{
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ff00ff;
-    border-radius: 5px;
-    background-color: #800080;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-    margin-top: 30px;
-  }
-  #basePageInfo{
-    max-width: 50%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ff00ff;
-    border-radius: 5px;
-    background-color: #800080;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-    margin-top: 30px;
-  }
-  .consultation-form label,
-  .consultation-form input,
-  .consultation-form select,
-  .consultation-form button {
-    margin-bottom: 15px;
-  }
+.dropdown-profile-container {
+    position: relative;
+    display: inline-block;
+}
 
-  .consultation-form label {
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .consultation-form input,
-  .consultation-form select {
-    width: 100%;
-    max-width: 300px;
-    padding: 8px;
-    border: 1px solid #ff00ff;
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: #800080;
-    color: #fff;
-  }
-
-  .consultation-form button {
+.dropdown-profile-container > a {
     display: block;
-    margin: 0 auto; /* Center the button */
-    background: linear-gradient(to right, #ff00ff, #800080);
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-  }
+    padding: 10px;
+    text-decoration: none;
+}
 
-  .consultation-form button:hover {
-    background: linear-gradient(to right, #800080, #ff00ff);
-  }
+.dropdown-profile-container:hover ul {
+    display: block;
+}
+
+.dropdown-profile-container li {
+    padding: 8px 15px;
+}
+
+.dropdown-profile-container li:hover {
+    background-color: #ff00ff;
+}

@@ -25,10 +25,10 @@ CREATE TABLE journal_entries (
 -- Insert sample data
 
 -- Sample usersa
-INSERT INTO users (email, password, name, `token`, `style`) VALUES
-('collin.kite@example.com', 'password', 'Collin Kite', 'insecuretoken', `darkmode.css`),
-('lisset.sadian@example.com', 'password', 'Lisset Sadian', 'insecuretoken', `pink.css`),
-('connor.hoffman@example.com', 'password', 'Connor Hoffman', 'insecuretoken', `lightmode.css`);
+INSERT INTO users (email, password, name, `token`, style) VALUES
+('collin.kite@example.com', 'password', 'Collin Kite', 'insecuretoken1', 'darkmode.css'),
+('lisset.sadian@example.com', 'password', 'Lisset Sadian', 'insecuretoken2', 'pink.css'),
+('connor.hoffman@example.com', 'password', 'Connor Hoffman', 'insecuretoken3', 'lightmode.css');
 
 -- Sample journal entries
 INSERT INTO journal_entries (user_id, title, content) VALUES

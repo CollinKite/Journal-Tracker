@@ -47,11 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $confirm_password = $_POST["confirm_password"];
 
         if ($new_password === $confirm_password) {
-            $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
             // Use a prepared statement for updating password
             $update_query = "UPDATE users SET password = ? WHERE user_id = ?";
             $statement = $db->prepare($update_query);
-            $statement->bind_param("si", $hashed_password, $user_id);
+            $statement->bind_param("si", $new_password, $user_id);
             $statement->execute();
         } else {
             echo "Passwords do not match.";
