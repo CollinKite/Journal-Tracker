@@ -3,9 +3,6 @@ session_start();
 $page = "Search for a Journal";
 include_once "Frame/header.php";
 
-// Include any necessary files or define your database connection here
-// include_once "Database/dbconnect.php"; // Replace with the path to your db_connect.php file
-
 // Initialize an empty array for results
 $results = [];
 
@@ -27,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $stmt->get_result();
         $results = $result->fetch_all(MYSQLI_ASSOC);
 
-        // Close the statement and connection
+        // Close the connection
         $stmt->close();
         $dbConn->close();
     }
@@ -43,8 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div id="journal-entries">
     <div id="journal-entries-list">
-        <ul id="searchResults"> <!-- Added ID to the ul element -->
-            <!-- Results will be added dynamically here -->
+        <ul id="searchResults">
         </ul>
     </div>
 </div>
@@ -75,19 +71,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         // Display the journal title
                         var titleElement = document.createElement('h4');
-                        titleElement.className = 'entry-title'; // Assign the class here
+                        titleElement.className = 'entry-title';
                         titleElement.innerHTML = entry.title;
                         li.appendChild(titleElement);
 
                         // Display the journal content
                         var contentElement = document.createElement('p');
-                        contentElement.className = 'entry-content'; // Assign the class here
+                        contentElement.className = 'entry-content';
                         contentElement.innerHTML = entry.content;
                         li.appendChild(contentElement);
 
                         // Create the "Edit" button
                         var editButton = document.createElement('button');
-                        editButton.className = 'edit-button'; // Assign the class here
+                        editButton.className = 'edit-button';
                         editButton.innerHTML = 'Edit';
                         editButton.value = entry.entry_id;
 
