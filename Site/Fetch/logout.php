@@ -3,8 +3,8 @@
         session_start();
     }
     session_destroy();
-    //delete cookie
-    setcookie("user_id", "", time() - 3600);
+    //delete user_id cookie
+    setcookie("user_id", "", time() - 3600, "/");
     header("Location: /index.php");
     exit();
 ?>

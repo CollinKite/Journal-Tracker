@@ -31,7 +31,7 @@ if(!isset($_SESSION)){
    
 
 ?>
-<!-- style -->
+<!-- inject users style setting -->
 <link rel="stylesheet" href="../css/<?php echo $style; ?>">
 </head>
 <body>
